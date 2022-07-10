@@ -1,22 +1,40 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="static/style.css">
+
+</head>
+<body>
+
+
 <head>
  <title>Homepage</title>
 </head>
 
-<nav>
-  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    {% if request.user.is_authenticated %}
 
-    {{user.username}} | <a href="{% url 'logout'  %}"><button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Logout</button></a>
+<ul>
 
+  {% if request.user.is_authenticated %}
 
-
-
-    {% else %}
-    <a href="{% url 'register'  %}"><button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Register</button></a>
-    <a href="{% url 'login'  %}"><button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Login</button></a>
-    {% endif %}
-  </div>
-</nav>
+  <li>{{user.username}} | <a class="active" href="{% url 'logout'  %}">Logout</a></li>
 
 
+  {% else %}
+    <li><a class="active" href="{% url 'register'  %}">Register</a></li>
+  <li><a class="active" href="{% url 'login'  %}">Login</a></li>
+  {% endif %}
+
+
+
+
+</ul>
+
+
+
+</body>
+</html>
 

@@ -1,10 +1,20 @@
 
+<!DOCTYPE html>
 <head>
  <title>Registr</title>
+
 </head>
 
 <h1>Registr</h1>
+
+
+
+<div class="modal">
+
+
 <form method="post">
+
+
   {% csrf_token %}
 
 {% for f in form %}
@@ -14,4 +24,5 @@
   <button type="submit">Регистрация</button>
 </form>
 
+</div>
 
