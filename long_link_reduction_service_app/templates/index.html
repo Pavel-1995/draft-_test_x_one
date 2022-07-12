@@ -1,26 +1,19 @@
-
-
-
 <!DOCTYPE html>
+
 <html>
 <head>
+ <link rel="stylesheet" href="static/style.css">
 
-    <link rel="stylesheet" href="static/style.css">
-
-</head>
-<body>
-
-
-<head>
  <title>Homepage</title>
 </head>
 
-
+<body>
+ <link rel="stylesheet" href="static/header_style.css">
 <ul>
 
   {% if request.user.is_authenticated %}
 
-  <li>{{user.username}} | <a class="active" href="{% url 'logout'  %}">Logout</a></li>
+  <li>Username: {{user.username}}  <a class="active" href="{% url 'logout'  %}">Logout</a></li>
 
 
   {% else %}
@@ -28,13 +21,54 @@
   <li><a class="active" href="{% url 'login'  %}">Login</a></li>
   {% endif %}
 
-
-
-
 </ul>
 
-
-
 </body>
-</html>
+
+<link rel="stylesheet" href="static/form_from_url.css">
+{% if request.user.is_authenticated %}
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-header text-center py-3">
+      <h1>URL Reducer Application <i class="fas fa-link px-2"></i></h1>
+    </div>
+    <div class="px-3 py-4">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row g-1">
+          <div class="col-10">{{form.origin_url}}</div>
+          <div class="col-2">
+            <button class="btn btn-success btn-lg w-100" type="submit">
+              Reduce
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% if errors %}
+  <div class="alert alert-danger mt-4" role="alert">
+    <p>{{errors}}</p>
+  </div>
+  {% endif %}
+
+  {% if new_url %}
+
+  <div class="mx-auto text-center mt-5">
+    <h2 class="text-danger">Your modified Url below</h2>
+    <p>You can copy the Link below and share it with your friends</p>
+    <p><span class="text-danger">Abridged URL:  </span>{{new_url}}</p>
+    <p><span class="text-danger">Origin URL:  </span>{{origin_url}}</p>
+  </div>
+  {% endif %}
+   {% endif %}
+</div>
+
+
+
+
+
+
+
+
 

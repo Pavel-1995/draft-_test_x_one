@@ -26,3 +26,16 @@ class LoginUserForm(AuthenticationForm):
 #     name = forms.CharField(label='Имя', max_length=255)
 #     email = forms.EmailField(label='Email')
 #     content = forms.CharField(widget=forms.Textarea(attrs = {'cols': 60, 'rows': 10}))
+
+
+from .models import Reducer
+
+
+class ReducerForm(forms.ModelForm):
+    origin_url = forms.URLField(widget=forms.URLInput(
+        attrs={"class": "form-control form-control-lg", "placeholder": "Your URL to shorten"}))
+
+    class Meta:
+        model = Reducer
+
+        fields = ('origin_url',)
