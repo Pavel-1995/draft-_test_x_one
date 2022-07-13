@@ -7,13 +7,14 @@
  <title>Homepage</title>
 </head>
 
-<body>
+<body style='overflow-x:hidden;'>
  <link rel="stylesheet" href="static/header_style.css">
 <ul>
 
   {% if request.user.is_authenticated %}
 
   <li>Username: {{user.username}}  <a class="active" href="{% url 'logout'  %}">Logout</a></li>
+  <li>All_urls<a class="active" href="{% url 'all_urls' %}">All_urls</a></li>
 
 
   {% else %}
@@ -23,7 +24,7 @@
 
 </ul>
 
-</body>
+</>
 
 <link rel="stylesheet" href="static/form_from_url.css">
 {% if request.user.is_authenticated %}
@@ -58,7 +59,7 @@
     <h2 class="text-danger">Your modified Url below</h2>
     <p>You can copy the Link below and share it with your friends</p>
     <p><span class="text-danger">Abridged URL:  </span>{{new_url}}</p>
-    <p><span class="text-danger">Origin URL:  </span>{{origin_url}}</p>
+    <p style='overflow-wrap:anywhere;'><span class="text-danger">Origin URL:  </span>{{origin_url}}</p>
   </div>
   {% endif %}
    {% endif %}

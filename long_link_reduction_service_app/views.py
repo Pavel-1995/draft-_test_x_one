@@ -1,4 +1,5 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, get_user_model
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 
@@ -8,6 +9,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 
 from django.views.generic import CreateView
+from requests import post
 
 from long_link_reduction_service_app.forms import RegisterUserForm, LoginUserForm
 
@@ -20,6 +22,8 @@ from .forms import ReducerForm
 
 # def index(request):
 #     return render(request, "index.html")
+
+
 
 
 class RegisterUser(CreateView):
@@ -47,7 +51,12 @@ def logout_user(request):
 
 
 
+
 def home_view(request):
+
+
+
+
     template = 'index.html'
 
     context = {}
@@ -55,23 +64,27 @@ def home_view(request):
 
     context['form'] = ReducerForm()
 
+
     if request.method == 'GET':
+
 
         return render(request, template, context)
 
     elif request.method == 'POST':
 
-        # used_form = ReducerForm(request.POST)
+
+
         user_form = ReducerForm(request.POST)
 
-        # user_id = request.user
-        # if used_form.is_valid():
-        #     reducer_object = used_form.save()
+
+
         if user_form.is_valid():
 
-            # user_id = request.user
+            reducer_object = user_form.save(commit=False)
+            reducer_object.user = request.user
+            reducer_object.save()
 
-            reducer_object = user_form.save()
+
 
             new_url = request.build_absolute_uri('/') + reducer_object.modified_url
 
@@ -79,9 +92,6 @@ def home_view(request):
 
             context['new_url'] = new_url
             context['origin_url'] = origin_url
-
-
-
 
             return render(request, template, context)
 
@@ -104,4 +114,11 @@ def redirect_url_view(request, shortened_part):
 
     except:
         raise Http404('Sorry this link is broken :(')
+
+
+def all_urls(request):
+    context = {
+        'posts': Reducer.objects.filter(user=request.user)
+    }
+    return render(request, "all_urls.html", context)
 

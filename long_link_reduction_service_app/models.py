@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
 from .utils import create_reducer_url
@@ -9,8 +10,10 @@ class Reducer(models.Model):
 
     origin_url = models.URLField()
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+
+
+    user = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
+
 
     modified_url = models.CharField(max_length=15, unique=True, blank=True)
 
@@ -23,11 +26,22 @@ class Reducer(models.Model):
     def save(self, *args, **kwargs):
 
 
-        #user_id = request.user
+
         # If the modified_url wasn't specified
         if not self.modified_url:
+
+            ##### найти тут юзера
             # We pass the model instance that is being saved
             self.modified_url = create_reducer_url(self)
 
+
+
         super().save(*args, **kwargs)
+
+
+
         print(super().save(*args, **kwargs))
+
+
+
+# get_user_model
