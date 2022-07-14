@@ -17,15 +17,11 @@ def create_random_code(chars=AVAIABLE_CHARS):
     )
 
 
-
 def create_reducer_url(model_instance):
     random_code = create_random_code()
     # Gets the model class
-
     model_class = model_instance.__class__
-
     if model_class.objects.filter(modified_url=random_code).exists():
         # Run the function again
         return create_reducer_url(model_instance)
-
     return random_code

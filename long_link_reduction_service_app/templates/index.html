@@ -3,29 +3,19 @@
 <html>
 <head>
  <link rel="stylesheet" href="static/style.css">
-
  <title>Homepage</title>
 </head>
-
 <body style='overflow-x:hidden;'>
  <link rel="stylesheet" href="static/header_style.css">
 <ul>
-
   {% if request.user.is_authenticated %}
-
   <li>Username: {{user.username}}  <a class="active" href="{% url 'logout'  %}">Logout</a></li>
   <li>All_urls<a class="active" href="{% url 'all_urls' %}">All_urls</a></li>
-
-
   {% else %}
     <li><a class="active" href="{% url 'register'  %}">Register</a></li>
   <li><a class="active" href="{% url 'login'  %}">Login</a></li>
   {% endif %}
-
 </ul>
-
-</>
-
 <link rel="stylesheet" href="static/form_from_url.css">
 {% if request.user.is_authenticated %}
 <div class="container">
@@ -52,9 +42,7 @@
     <p>{{errors}}</p>
   </div>
   {% endif %}
-
   {% if new_url %}
-
   <div class="mx-auto text-center mt-5">
     <h2 class="text-danger">Your modified Url below</h2>
     <p>You can copy the Link below and share it with your friends</p>

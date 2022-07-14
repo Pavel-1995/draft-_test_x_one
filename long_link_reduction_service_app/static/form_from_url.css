@@ -1,17 +1,13 @@
-
 div.container {
 
     margin-left: 450px;
     margin-top: 95px;
-
     }
-div.col-10 {
 
+div.col-10 {
     height: 25px;
     padding: 15px 10px 5px 10px;
-
     font-size:16px;
-
     }
 
 input{
@@ -19,10 +15,9 @@ input{
     width: 400px;
     margin-left: -40px;
     text-align: center;
-
 }
-button{
 
+button{
     height:20px;
     width:150px;
     margin-left: 80px;
