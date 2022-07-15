@@ -1,6 +1,5 @@
 from django.urls import path
 
-from .import views
 from .views import logout_user, redirect_url_view
 
 
