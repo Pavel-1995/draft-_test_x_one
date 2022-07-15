@@ -1,7 +1,6 @@
 from django.conf import settings
 
 from random import choice
-
 from string import ascii_letters, digits
 
 SIZE = getattr(settings, "MAXIMUM_URL_CHARS", 7)
