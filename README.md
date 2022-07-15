@@ -8,4 +8,6 @@ In this project, an application has been developed that shortens references.To m
 Technology Stack
 Python, Django, MySQL
 
-install Python 3
+install Python 3.10
+
+
